@@ -1,0 +1,44 @@
+{
+	"name": "trends",
+	"version": "0.0.1",
+	"buildTimestamp": "202108091328",
+	"scmRevision": "",
+	"libraries": [
+		{
+			"name": "sap.f",
+			"version": "1.84.0",
+			"buildTimestamp": "202108091328",
+			"scmRevision": ""
+		},
+		{
+			"name": "sap.m",
+			"version": "1.84.0",
+			"buildTimestamp": "202108091328",
+			"scmRevision": ""
+		},
+		{
+			"name": "sap.tnt",
+			"version": "1.84.0",
+			"buildTimestamp": "202108091328",
+			"scmRevision": ""
+		},
+		{
+			"name": "sap.ui.core",
+			"version": "1.84.0",
+			"buildTimestamp": "202108091328",
+			"scmRevision": ""
+		},
+		{
+			"name": "sap.ui.layout",
+			"version": "1.84.0",
+			"buildTimestamp": "202108091328",
+			"scmRevision": ""
+		},
+		{
+			"name": "sap.ui.unified",
+			"version": "1.84.0",
+			"buildTimestamp": "202108091328",
+			"scmRevision": ""
+		}
+	]
+}

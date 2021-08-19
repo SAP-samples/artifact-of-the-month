@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/Opa5"],function(t){"use strict";return t.extend("aow.artifact.test.integration.arrangements.Startup",{iStartMyApp:function(){this.iStartMyUIComponent({componentConfig:{name:"aow.artifact",async:true,manifest:true}})}})});

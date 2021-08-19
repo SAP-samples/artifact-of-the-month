@@ -1,0 +1,169 @@
+{
+    "_version": "1.21.0",
+    "sap.app": {
+        "id": "aow.artifact",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{title}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "trendDataSource": {
+                "uri": "model/trends.json",
+                "type": "JSON"
+            },
+            "allItemsDataSource": {
+                "uri": "model/allItems.json",
+                "type": "JSON"
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "rootView": {
+            "viewName": "aow.artifact.view.MainView",
+            "type": "XML",
+            "async": true,
+            "id": "rootView"
+        },
+        "dependencies": {
+            "minUI5Version": "1.60.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.tnt": {},
+                "sap.f": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "aow.artifact.i18n.i18n"
+                }
+            },
+            "trendData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "trendDataSource"
+            },
+            "allItemsData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {
+                    "sizeLimit": 1000
+                },
+                "dataSource": "allItemsDataSource"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "aow.artifact.view",
+                "controlId": "pageContainer",
+                "transition": "show",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "name": "default",
+                    "pattern": "",
+                    "target": "TrendsPage"
+                },
+                {
+                    "name": "trends",
+                    "pattern": "trends",
+                    "target": "TrendsPage"
+                },
+                {
+                    "name": "new",
+                    "pattern": "new",
+                    "target": "NewPage"
+                },
+                {
+                    "name": "updated",
+                    "pattern": "updated",
+                    "target": "UpdatedPage"
+                },
+                {
+                    "name": "all",
+                    "pattern": "all",
+                    "target": "AllPage"
+                },
+                {
+                    "name": "about",
+                    "pattern": "about",
+                    "target": "AboutPage"
+                }
+            ],
+            "targets": {
+                "TargetMainView": {
+                    "viewType": "XML",
+                    "viewLevel": 1,
+                    "viewId": "MainView",
+                    "viewName": "MainView"
+                },
+                "TrendsPage": {
+                    "viewType": "XML",
+                    "viewLevel": 2,
+                    "viewId": "trendsPageView",
+                    "viewName": "TrendsPage"
+                },
+                "NewPage": {
+                    "viewType": "XML",
+                    "viewLevel": 2,
+                    "viewId": "newPageView",
+                    "viewName": "NewArtifactsPage"
+                },
+                "UpdatedPage": {
+                    "viewType": "XML",
+                    "viewLevel": 2,
+                    "viewId": "updatedPageView",
+                    "viewName": "UpdatedArtifactsPage"
+                },
+                "AllPage": {
+                    "viewType": "XML",
+                    "viewLevel": 2,
+                    "viewId": "allPageView",
+                    "viewName": "AllPage"
+                },
+                "AboutPage": {
+                    "viewType": "XML",
+                    "viewLevel": 2,
+                    "viewId": "aboutPageView",
+                    "viewName": "AboutPage"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+/* Enter your custom styles here */
+
+.sapMNC {
+    width: 4rem;
+}
+
+.item-box > :last-of-type {
+    margin-left: auto;
+}
+
+.min-width-zero {
+    min-width: 0;
+}
+
+.sapMScrollContScroll {
+    height: 100%;
+}

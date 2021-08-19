@@ -1,0 +1,51 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
+  xmlns:aow="aow.artifact.control" controllerName="aow.artifact.controller.MainView">
+
+  <ScrollContainer id="trends-page" horizontal="false" vertical="true" height="100%">
+    <!-- <Text id="trend-intro" text="{i18n>appDescription}" class="sapUiSmallMargin" /> -->
+    <List id="trend-list" growing="true" growingThreshold="25" growingScrollToLoad="true"
+      items="{path: 'trendData>/newlyAdded'}" noDataText="{i18n>noRankingType}">
+      <headerToolbar>
+        <OverflowToolbar id="trend-list-bar">
+          <Title id="trend-bar-info" text="{i18n>new}" level="H4" />
+          <ToolbarSpacer id="trend-bar-spacer" />
+          <SegmentedButton id="trend-list-bar-segmented" selectedKey="{settings>/filter}"
+            class="sapUiSizeCompact sapUiTinyMarginTopBottom">
+            <items>
+              <SegmentedButtonItem id="trend-list-bar-segment-1" text="{i18n>all}" key="all" />
+              <SegmentedButtonItem id="trend-list-bar-segment-2" text="{i18n>npm-packages}" key="npm-package" visible="{
+                path: 'trendData>/newlyAdded',
+                formatter: '.formatter.containsNpmPackages'
+              }" />
+              <SegmentedButtonItem id="trend-list-bar-segment-3" text="{i18n>code-repositories}" visible="{
+                path: 'trendData>/newlyAdded',
+                formatter: '.formatter.containsCodeRepositories'
+              }" key="code-repository" />
+              <SegmentedButtonItem id="trend-list-bar-segment-4" text="{i18n>pypi-packages}" key="pypi-package" visible="{
+                  path: 'trendData>/newlyAdded',
+                  formatter: '.formatter.containsPypiPackages'
+                }" />
+              <SegmentedButtonItem id="trend-list-bar-segment-5" text="{i18n>docker-images}" key="docker-image" visible="{
+                  path: 'trendData>/newlyAdded',
+                  formatter: '.formatter.containsDockerImages'
+                }" />
+            </items>
+          </SegmentedButton>
+        </OverflowToolbar>
+      </headerToolbar>
+
+      <CustomListItem id="trend-listitem" visible="{
+                  parts: ['trendData>type','settings>/filter'],
+                  formatter: '.formatter.displayItem'
+                }">
+        <aow:ArtifactListItemContent name="{trendData>name}" description="{trendData>description}"
+          link="{trendData>link}" type="{trendData>type}" tags="{trendData>tags}" updatedAt="{trendData>updatedAt}"
+          createdAt="{trendData>createdAt}" rank="{
+            path: 'trendData>rank',
+            formatter: '.formatter.formatRank'
+          }" />
+      </CustomListItem>
+    </List>
+  </ScrollContainer>
+
+</mvc:View>

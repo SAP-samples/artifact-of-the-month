@@ -1,0 +1,25 @@
+{
+    "name": "artifact-of-the-month",
+    "version": "0.0.1",
+    "description": "POC",
+    "private": true,
+    "scripts": {
+        "fetch": "yarn workspace analyzer fetch",
+        "analyze": "yarn workspace analyzer analyze",
+        "start": "yarn workspace frontend start",
+        "build": "yarn workspace frontend build",
+        "all": "run-s fetch analyze build",
+        "prettier": "prettier --write ."
+    },
+    "author": "SAP SE",
+    "license": "Apache-2.0",
+    "workspaces": {
+        "packages": [
+            "analyzer",
+            "frontend"
+        ]
+    },
+    "dependencies": {
+        "npm-run-all": "^4.1.5"
+    }
+}

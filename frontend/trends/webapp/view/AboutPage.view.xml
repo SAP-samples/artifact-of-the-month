@@ -1,0 +1,10 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
+controllerName="aow.artifact.controller.MainView">
+  <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%" title="{i18n>about}">
+    <Text
+    text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
+    <MessageStrip text="explanation, link to github, background reading etc + Last Updated timestamp"
+    showIcon="true" showCloseButton="true" class="sapUiMediumMarginTop">
+  </MessageStrip>
+  </ScrollContainer>
+</mvc:View>

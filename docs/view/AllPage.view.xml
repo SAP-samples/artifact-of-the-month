@@ -1,0 +1,37 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
+  xmlns:aow="aow.artifact.control" controllerName="aow.artifact.controller.MainView">
+
+  <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%">
+    <List id="all-list" items="{path: 'allItemsData>/'}">
+      <headerToolbar>
+        <OverflowToolbar id="all-list-bar">
+          <Title id="all-bar-info" text="{i18n>all}" level="H4" />
+          <ToolbarSpacer id="all-bar-spacer" />
+          <SearchField id="all-bar-search" width="60%" liveChange=".liveSearch" />
+          <!-- <SegmentedButton id="all-list-bar-segmented" selectedKey="{settings>/filter}"
+            class="sapUiSizeCompact sapUiTinyMarginTopBottom">
+            <items>
+              <SegmentedButtonItem id="all-list-bar-segment-1" text="{i18n>all}" key="all" />
+              <SegmentedButtonItem id="all-list-bar-segment-2" text="{i18n>npm-packages}" key="npm-package" />
+              <SegmentedButtonItem id="all-list-bar-segment-3" text="{i18n>code-repositories}"
+                key="code-repository" />
+              <SegmentedButtonItem id="all-list-bar-segment-4" text="{i18n>docker-images}"
+                key="docker-image" />
+            </items>
+          </SegmentedButton> -->
+        </OverflowToolbar>
+      </headerToolbar>
+      <CustomListItem id="all-listitem" visible="{
+          parts: ['allItemsData>type','settings>/filter'],
+          formatter: '.formatter.displayItem'
+        }">
+
+        <aow:ArtifactListItemContent name="{allItemsData>name}" description="{allItemsData>description}"
+          link="{allItemsData>link}" type="{allItemsData>type}" tags="{allItemsData>tags}"
+          updatedAt="{allItemsData>updatedAt}" createdAt="{allItemsData>createdAt}" />
+      </CustomListItem>
+    </List>
+    <MessageStrip text="{i18n>hintModelLimit}" showIcon="true" showCloseButton="true" class="sapUiMediumMarginTop">
+    </MessageStrip>
+  </ScrollContainer>
+</mvc:View>

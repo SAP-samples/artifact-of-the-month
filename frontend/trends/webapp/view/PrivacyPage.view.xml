@@ -1,0 +1,7 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
+controllerName="aow.artifact.controller.MainView">
+  <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%">
+    <MessageStrip text="INSERT HERE" showIcon="true" showCloseButton="true" class="sapUiMediumMarginTop">
+    </MessageStrip>
+  </ScrollContainer>
+</mvc:View>

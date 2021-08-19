@@ -1,0 +1,14 @@
+node_modules/
+dist/
+package-lock.json
+yarn*
+.env
+*key.json
+
+.mta/
+*.mtar
+dist/
+package-lock.json
+mta_archives/
+Makefile*
+mta-*

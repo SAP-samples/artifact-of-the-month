@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <title>Artifact of the Month</title>
+
+    <script>
+        window["sap-ui-config"] = {};
+        // determine the proper theme for UI5 from current color scheme
+        window["sap-ui-config"]["theme"] = (function () {
+            try {
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? "sap_fiori_3_dark" : "sap_fiori_3";
+            } catch (ex) {
+                console.warn("window.matchMedia not supported - keep default theme");
+                return "sap_fiori_3";
+            }
+        })();
+    </script>
+
+    <script id="sap-ui-bootstrap" src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-resourceroots='{
+    "aow.artifact": "./"
+  }' data-sap-ui-oninit="module:sap/ui/core/ComponentSupport" data-sap-ui-compatVersion="edge" data-sap-ui-async="true"
+        data-sap-ui-libs="sap.ui.core,sap.m,sap.f,sap.tnt,sap.ui.layout" data-sap-ui-frameOptions="trusted">
+        </script>
+</head>
+
+<body class="sapUiBody">
+    <div data-sap-ui-component data-name="aow.artifact" data-id="container" data-settings='{"id" : "artifact"}'></div>
+</body>
+
+</html>
