@@ -3,7 +3,8 @@
 
   <ScrollContainer id="trends-page" horizontal="false" vertical="true" height="100%">
     <!-- <Text id="trend-intro" text="{i18n>appDescription}" class="sapUiSmallMargin" /> -->
-    <List id="trend-list" items="{path: 'trendData>/overall'}" noDataText="{i18n>noRankingType}">
+    <List id="trend-list" growing="true" growingThreshold="25" growingScrollToLoad="true"
+      items="{path: 'trendData>/overall'}" noDataText="{i18n>noRankingType}">
       <headerToolbar>
         <OverflowToolbar id="trend-list-bar">
           <Title id="trend-bar-info" text="{i18n>trends}" level="H4" />
@@ -38,7 +39,8 @@
                   formatter: '.formatter.displayItem'
                 }">
         <aow:ArtifactListItemContent name="{trendData>name}" description="{trendData>description}"
-          link="{trendData>link}" type="{trendData>type}" tags="{trendData>tags}" updatedAt="{trendData>updatedAt}" createdAt="{trendData>createdAt}" rank="{
+          link="{trendData>link}" type="{trendData>type}" tags="{trendData>tags}" updatedAt="{trendData>updatedAt}"
+          createdAt="{trendData>createdAt}" rank="{
               path: 'trendData>rank',
               formatter: '.formatter.formatRank'
             }" rankIndicator="{
