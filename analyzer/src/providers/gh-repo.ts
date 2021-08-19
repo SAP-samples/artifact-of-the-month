@@ -15,7 +15,7 @@ export default class GitHubRepositoriesProvider {
     ];
 
     static octokit = new Octokit({
-        auth: process.env.github_token,
+        auth: process.env.GITHUB_TOKEN,
     });
 
     static transformRepo(rawRepo: any, lastMonth: any) {
