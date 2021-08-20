@@ -36,7 +36,7 @@ previousFilenames.map((path: string) => {
 
     currentArtifactIds.map((id: string) => {
         if (previousArtifacts[id]) {
-            // TODO for later (September/October), ignore first occurence as it's probably an outlier
+            // TODO for later (October or later), ignore first occurence as it's probably an outlier
             timeseries[id].series.push(previousArtifacts[id].currentCount);
         }
     });

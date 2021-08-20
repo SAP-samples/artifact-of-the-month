@@ -9,10 +9,10 @@ export default class PiPyPackagesProvider {
     static bigquery = new BigQuery();
 
     static transformPackage(raw: any, lastMonth: any) {
-        const id = `pypi-${raw.full_name}`;
+        const id = `pypi-${raw.name}`;
         const old: Artifact | undefined = Object.values(lastMonth).find(
             //@ts-ignore
-            (old: Artifact) => old.id === id || old.name === raw.name  //TODO remove before publish
+            (old: Artifact) => old.id === id
         );
         const tags = [raw.last_version];
         raw.last_license && tags.push(raw.last_license);
@@ -23,7 +23,6 @@ export default class PiPyPackagesProvider {
                 description: raw.last_summary,
                 link: `https://pypi.org/project/${raw.name}/`,
                 tags,
-                createdAt: raw.first_upload_time.value, //TODO remove before publish
                 updatedAt: raw.last_upload_time.value,
                 type: "pypi-package",
                 aggregatedCount: raw.curr_month_downloads + old.aggregatedCount,
