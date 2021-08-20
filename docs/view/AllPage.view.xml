@@ -22,10 +22,7 @@
           </SegmentedButton> -->
         </OverflowToolbar>
       </headerToolbar>
-      <CustomListItem id="all-listitem" visible="{
-          parts: ['allItemsData>type','settings>/filter'],
-          formatter: '.formatter.displayItem'
-        }">
+      <CustomListItem id="all-listitem">
 
         <aow:ArtifactListItemContent name="{allItemsData>name}" description="{allItemsData>description}"
           link="{allItemsData>link}" type="{allItemsData>type}" tags="{allItemsData>tags}"
