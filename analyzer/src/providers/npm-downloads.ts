@@ -14,9 +14,7 @@ async function getMonthlyDownloads(packageName: string): Promise<number | null> 
     const start = getFirstDayOfMonth();
     const end = getLastDayOfMonth();
     try {
-        const res = await axios(
-            `https://api.npmjs.org/downloads/point/${start}:${end}/${packageName}`
-        );
+        const res = await axios(`https://api.npmjs.org/downloads/point/${start}:${end}/${packageName}`);
         if (res.data.package === packageName && res.data.downloads > -1) {
             return res.data.downloads;
         }
