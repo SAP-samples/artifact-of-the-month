@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from "fs";
 
 import Providers from "./providers";
 import { getMonthIdentifier } from "./helper";
+import { Artifact } from "./types";
 
 (async () => {
     const lastMonth = getMonthIdentifier(-1);
@@ -22,7 +23,12 @@ import { getMonthIdentifier } from "./helper";
     }
 
     const artifacts = await Promise.all(
-        Providers.map((provider) => provider.get(lastWeek))
+        Providers.map(async (provider) => {
+            console.log(`Start provider ${provider.name}.`);
+            const items: Artifact[] = await provider.get(lastWeek);
+            console.log(`Provider ${provider.name} returned ${items.length} items.`);
+            return items;
+        })
     );
 
     const artifactsMap: any = {};
