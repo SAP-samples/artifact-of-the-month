@@ -10,7 +10,7 @@ function sleep(ms: number) {
 
 // could use bulk API if needed, but no support for scoped packages
 // 2021-07-01:2021-07-31/express,generator-easy-ui5
-async function getMonthlyDownloads(packageName: string): Promise<number> {
+async function getMonthlyDownloads(packageName: string): Promise<number | null> {
     const start = getFirstDayOfMonth();
     const end = getLastDayOfMonth();
     try {
@@ -28,12 +28,12 @@ async function getMonthlyDownloads(packageName: string): Promise<number> {
         if (err?.response?.status === 429) {
             throw "Too Many Requests"
         }
-        console.error(packageName, `https://api.npmjs.org/downloads/point/${start}:${end}/${packageName}`)
-        throw `Error reponse from npm-stat.com ${err}.`;
+        console.error(`Error reponse from npm-stat.com ${packageName} https://api.npmjs.org/downloads/point/${start}:${end}/${packageName}}.`)
+        return null;
     }
 }
 
-export default class DockerHubProvider {
+export default class NpmProvider {
     static source = "npm-downloads";
 
     static individualPackages: string[] = [
@@ -101,8 +101,12 @@ export default class DockerHubProvider {
     static async buildArtifact(
         manifest: any,
         lastWeek: any
-    ): Promise<Artifact> {
+    ): Promise<Artifact | null> {
+
         let downloads = await getMonthlyDownloads(manifest.name);
+        if (downloads === null) {
+            return null;
+        }
 
         const id = `npm-${manifest.name}`;
 
@@ -152,11 +156,14 @@ export default class DockerHubProvider {
 
         const allManifests = [...scopePackages.flat(), ...singlePackages];
 
-        return Promise.all(
+        const npmArtifacts = await Promise.all(
             allManifests.map(async (manifest: any, idx: number) => {
                 await sleep(Math.floor(idx / 20) * 1000); // wait one second after 20 request to avoid a HTTP error from the npmjs server
                 return this.buildArtifact(manifest, lastWeek);
             })
         );
+
+        //@ts-ignore not sure why this comment is needed
+        return npmArtifacts.filter((a: any) => a !== null);
     }
 }

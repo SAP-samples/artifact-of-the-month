@@ -24,9 +24,9 @@ import { Artifact } from "./types";
 
     const artifacts = await Promise.all(
         Providers.map(async (provider) => {
-            console.log(`Start provider ${provider.name}.`);
+            console.log(`Start provider '${provider.name}'.`);
             const items: Artifact[] = await provider.get(lastWeek);
-            console.log(`Provider ${provider.name} returned ${items.length} items.`);
+            console.log(`Provider '${provider.name}' returned ${items.length} items.`);
             return items;
         })
     );
