@@ -136,6 +136,7 @@ const newArtifactsRanking: Ranking[] = Object.values(timeseries)
 
 // 7. Write results back to files
 const newRankings = JSON.stringify({
+    lastRun: new Date().toISOString(),
     overall: trendRanking.slice(0, 99),
     recentlyUpdated: updatedArtifactsRanking.slice(0, 99),
     newlyAdded: newArtifactsRanking.slice(0, 99),
