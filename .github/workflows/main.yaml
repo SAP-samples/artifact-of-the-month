@@ -33,4 +33,3 @@ jobs:
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: Evaluate all artifacts for the current month
-                  file_pattern: docs/* analyzer/* frontend/*
