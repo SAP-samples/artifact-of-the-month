@@ -1,5 +1,8 @@
 # Artifact of the Month
 
+[![Build Status][test-image]][test-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+[![REUSE status][reuse-image]][reuse-url]
 
 ## Description
 
@@ -58,3 +61,12 @@ Do you know of an SAP-related development artifact that isn't listed here but sh
 
 ## License
 Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
+
+
+
+[test-image]: https://github.com/SAP-samples/artifact-of-the-month/actions/workflows/main.yaml/badge.svg
+[test-url]: https://github.com/SAP-samples/artifact-of-the-month/actions/workflows/main.yaml
+[daviddm-image]: https://img.shields.io/david/SAP-samples/artifact-of-the-month.svg
+[daviddm-url]: https://david-dm.org/SAP-samples/artifact-of-the-month
+[reuse-image]: https://api.reuse.software/badge/github.com/SAP-samples/artifact-of-the-month/
+[reuse-url]: https://api.reuse.software/info/github.com/SAP-samples/artifact-of-the-month/
