@@ -1,10 +1,290 @@
-<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
-controllerName="aow.artifact.controller.MainView">
-  <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%" title="{i18n>about}">
-    <Text
-    text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" />
-    <MessageStrip text="explanation, link to github, background reading etc + Last Updated timestamp"
-    showIcon="true" showCloseButton="true" class="sapUiMediumMarginTop">
-  </MessageStrip>
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+  xmlns:html="http://www.w3.org/1999/xhtml" xmlns:tnt="sap.tnt" controllerName="aow.artifact.controller.MainView">
+  <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%" title="{i18n>about}"
+    class=" sapUiLargeMarginBegin">
+    <Link text="Click here to read the full blog post" target="_blank" href="TODO insert"   class=" sapUiLargeMarginTop"/>
+    <html:h1>Where is the data coming from</html:h1>
+    <html:p>The displayed data originates from multiple data providers. It is important that each
+      data point has one key indicator, such as monthly downloads or gained forks. It was also an essential requirement
+      that this data is publicly verifiable. Which rules out some indicators such as monthly views on a GitHub
+      repository. Another requirement was that it shouldn’t matter if the artifact is provider by SAP, a partner, or any
+      other third party. The only condition is that the artifact needs to meet is that it is related to SAP technology.
+    </html:p>
+    <html:p>With all this in mind, I chose the following providers for the first version of this project:</html:p>
+    <html:ul>
+      <html:li>
+        <html:strong>DockerHub Images</html:strong>
+        <html:ul>
+          <html:li class="ql-indent-1">
+            <html:span data-preserver-spaces="true">As mentioned before, my initial idea was to collect
+              the “pull count” of Docker images to find out which ones are the most popular. Luckily, </html:span>
+            <html:a class="editor-rtfLink" href="https://docs.docker.com/registry/spec/api/" target="_blank"
+              rel="noopener">
+              <html:span data-preserver-spaces="true">DockerHub API</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true"> provides all the data we need. At the time of this writing, it was
+              sufficient to retrieve all images of a DockerHub user. But adding support for individual images shouldn’t
+              be too hard.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+      <html:li>
+        <html:strong>NPM Packages</html:strong>
+        <html:ul>
+          <html:li class="ql-indent-1">
+            <html:span data-preserver-spaces="true">NPM packages are pretty much straightforward.
+              Developers download packages that they need for their projects. Higher usage of a package indicates a
+              higher value to the overall community. The </html:span>
+            <html:a class="editor-rtfLink" href="https://github.com/npm/registry/blob/master/docs/download-counts.md"
+              target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">npm registry</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true"> itself kindly provides this data, and the provider pulls
+              information
+              about individual packages and all packages that belong to a </html:span>
+            <html:a class="editor-rtfLink" href="https://www.npmjs.com/~openui5-bot" target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">particular scope</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+      <html:li>
+        <html:strong>PyPI Packages</html:strong>
+        <html:ul>
+          <html:li class="ql-indent-1">
+            <html:span data-preserver-spaces="true">It’s the same thing as npm, just for the Python
+              ecosystem. The only difference here is that the data needs to be pulled from a </html:span>
+            <html:a class="editor-rtfLink" href="https://packaging.python.org/guides/analyzing-pypi-package-downloads/"
+              target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">public Google BigQuery
+                dataset</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">. (Btw: thank you, </html:span>
+            <html:a class="editor-rtfLink" href="https://people.sap.com/vitaliy.rudnytskiy" target="_blank"
+              rel="noopener">Witalij Rudnicki</html:a>
+            <html:span data-preserver-spaces="true"> for helping me out with the
+              query to fetch the data). We currently only pull data from </html:span>
+            <html:a class="editor-rtfLink" href="https://pypi.org/user/SAP/" target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">selected users</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">, but this
+              could be extended to individual projects.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+      <html:li>
+        <html:strong>GitHub Repositories</html:strong>
+        <html:ul>
+          <html:li class="ql-indent-1">
+            <html:span data-preserver-spaces="true">GitHub Repositories serve multiple purposes. One is
+              that developers use them to share source code and </html:span>
+            <html:a class="editor-rtfLink" href="https://github.com/SAP" target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">fork,
+                improve, and develop the projects</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">. Another purpose is
+              simply the sharing of knowledge by providing </html:span>
+            <html:a class="editor-rtfLink" href="https://github.com/SAP-samples" target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">easy-to-understand samples.</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">
+              To consider both scenarios, we calculate the sum of the repository forks and their star count.
+            </html:span>
+            <html:a class="editor-rtfLink" href="https://octokit.github.io/rest.js/v18#repos-get" target="_blank"
+              rel="noopener">
+              <html:span data-preserver-spaces="true">GitHub’s Octokit API</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true"> delivers the data, whereas it makes sense to be authenticated to
+              get a
+              higher quota. This provider collects data from all </html:span>
+            <html:a class="editor-rtfLink" href="https://github.com/nzamani/sap-cloud-connector-docker" target="_blank"
+              rel="noopener">
+              <html:span data-preserver-spaces="true">individual repos</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true"> or
+              entire </html:span>
+            <html:a class="editor-rtfLink" href="https://github.com/SAP-samples/" target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">organizations</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true"> and </html:span>
+            <html:a class="editor-rtfLink" href="https://github.com/saphanaacademy" target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">users</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+    </html:ul>
+    <html:p>I would have also liked to include GitHub Packages as a separate provider, but the Octokit API’s data is
+      unfortunately not good enough (yet).</html:p>
+    <html:h1>How is it implemented</html:h1>
+    <html:p>
+      <html:span data-preserver-spaces="true">This project itself should be an open-source project. And it should make
+        use
+        of </html:span>
+      <html:a class="editor-rtfLink"
+        href="https://blogs.sap.com/2020/12/02/beyond-sapui5-and-sap-fiori-elements-appendix-to-teched-session-iis114/"
+        target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">one of SAP’s very own open-source
+          frameworks</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> for the web UIs. In the last few month, I did a lot
+        with UI5 Web Component, so I felt that it’s time to go back to my root and pick </html:span>
+      <html:a class="editor-rtfLink" href="https://openui5.hana.ondemand.com/" target="_blank" rel="noopener">
+        <html:strong>
+          <html:span data-preserver-spaces="true">OpenUI5</html:span>
+        </html:strong>
+      </html:a>
+      <html:span data-preserver-spaces="true">. For the “fetch
+        logic,” I used my (current) favorite programming language of choice: </html:span>
+      <html:a class="editor-rtfLink"
+        href="https://blogs.sap.com/2019/07/01/cloudfoundryfun-6-run-typescript-apps-on-cloud-foundry/" target="_blank"
+        rel="noopener">
+        <html:span data-preserver-spaces="true">TypeScript</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> – there was no doubt about this choice. For the persistency- and platform
+        question, it was a little bit harder. I was considering running the entire app with a DB on the </html:span>
+      <html:a class="editor-rtfLink" href="https://blogs.sap.com/2021/07/01/exploring-btps-new-free-tier-plans/"
+        target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">free tier model for SAP BTP</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true">, but I thought that would be overkill – at least for now. Instead, I
+        decided to
+        store the data directly in the </html:span>
+      <html:a class="editor-rtfLink"
+        href="https://github.com/SAP-samples/artifact-of-the-month/blob/main/frontend/trends/webapp/model/trends.json"
+        target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">JSON model of the OpenUI5 web
+          app</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> and host everything on </html:span>
+      <html:a class="editor-rtfLink" href="https://pages.github.com/" target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">GitHub Pages</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true">. Now that the data
+        persistence and the hosting problems are solved, there is only one backend task left: data processing. As the
+        code is already hosted on GitHub and as GitHub Pages will expose the web app, it makes sense to
+        use </html:span>
+      <html:a class="editor-rtfLink"
+        href="https://blogs.sap.com/2021/08/02/sap-tech-bytes-using-github-actions-to-deploy-continuously-to-kyma-kubernetes/"
+        target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">GitHub Actions</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> for this task. There is </html:span>
+      <html:a class="editor-rtfLink"
+        href="https://github.com/SAP-samples/artifact-of-the-month/blob/main/.github/workflows/push.yaml"
+        target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">a job that builds the web app on every
+          push</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> based on the latest data. This ensures that changes to
+        the web app are deployed immediately. The </html:span>
+      <html:a class="editor-rtfLink"
+        href="https://github.com/SAP-samples/artifact-of-the-month/blob/main/.github/workflows/main.yaml"
+        target="_blank" rel="noopener">
+        <html:span data-preserver-spaces="true">second job</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> will automatically be invoked by the platform on the first of every month
+        (or
+        manually) and fetch the latest download stats from all the artifacts, calculate the rankings, and re-build the
+        web app. </html:span>
+      <html:strong>
+        <html:span data-preserver-spaces="true">With all these pieces in place, this is
+          essentially a serverless web app that updates the data on its own. </html:span>
+      </html:strong>
+    </html:p>
+    <html:h1>The rankings of the application</html:h1>
+    <html:p>I deliberately kept the application as simple as possible (or at least, I think I did). It’s a typical
+      Single-Page-Application ( <html:a href="https://en.wikipedia.org/wiki/Single-page_application" target="_blank">SPA
+      </html:a>)
+      with a collapsible menu on the left that can be used to navigate between the four main pages. I was also inspired
+      to add a special widget to the ShellBar that allows users to switch between dark- and light-mode. To be honest,
+      this was mainly for fun, and it’s less functional, but I still like it a lot.</html:p>
+    <html:p>The first three pages display the various trends, and each artifact/item uses a number indicator to show the
+      rank
+      (and a comparison to the previous month’s rank). Besides, the list items also provide some basic information about
+      the artifact and a link that will redirect the user to the respective platform to find more information.</html:p>
+    <html:ul>
+      <html:li>
+        <html:strong>Overall Trends</html:strong>
+        <html:ul>
+          <html:li class="ql-indent-1">
+            <html:span data-preserver-spaces="true">This ranking takes all artifacts into account, and
+              each artifact’s score is calculated based on the </html:span>
+            <html:a class="editor-rtfLink"
+              href="https://stackoverflow.com/questions/787496/what-is-the-best-way-to-compute-trending-topics-or-tags"
+              target="_blank" rel="noopener">
+              <html:span data-preserver-spaces="true">Z-Score</html:span>
+            </html:a>
+            <html:span data-preserver-spaces="true">. For the calculation, we use the current indicator and the list of
+              the
+              indicators of the past few months. Artifacts that don’t have data points for the past two months won’t be
+              considered. For npm packages, for example, the parameters are the current monthly downloads and the
+              download counts of the previous months. The advantage of this is that utility packages such as <html:a
+                href="https://www.npmjs.com/package/@sap/xsenv" target="_blank">xsenv</html:a> will only be in the
+              ranking if
+              they have increasing downloads but not if they are constant or downward.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+      <html:li>
+        <html:strong>New Artifacts</html:strong>
+        <html:ul>
+          <html:li>
+            <html:span data-preserver-spaces="true">The “New Artifacts” ranking only considers items added to the
+              catalog
+              in the past two months so that you can see which artifacts were just released and might be of interest for
+              your next project. New items naturally don’t have previous data points. Therefore, we calculate the
+              Z-Score here against their peer artifacts. E.g., DockerHub images with an above-average pull count will
+              receive a high rank here in the first few months.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+      <html:li>
+        <html:strong>Recently Updated Artifacts</html:strong>
+        <html:ul>
+          <html:li class="ql-indent-1">
+            <html:span data-preserver-spaces="true">The (for now) last ranking only considers artifacts
+              updated in the previous month. Calculation-wise, it applies the same principles as the “Overall
+              Trends”.</html:span>
+          </html:li>
+        </html:ul>
+      </html:li>
+    </html:ul>
+    <html:p> </html:p>
+    <html:p>And the last page lists all items that were considered for the current ranking. These list items look
+      slightly
+      different than the previous ones as they don’t have a rank indicator. The list itself continues a few hundred
+      items, so it doesn’t make sense to filter them based on their type. Instead, there’s a search box to filter list
+      items based on their name, description, or type:</html:p>
+    <html:h1>Improvements are very much appreciated</html:h1>
+    <html:p>
+      <html:span data-preserver-spaces="true">In the current version, the catalog contains more than 1500 artifacts. I’m
+        sure that the actual number of relevant artifacts is way larger. So I want to invite you to </html:span>
+      <html:a class="editor-rtfLink" href="https://github.com/SAP-samples/artifact-of-the-month/compare" target="_blank"
+        rel="noopener">
+        <html:span data-preserver-spaces="true">open a pull request</html:span>
+      </html:a>
+      <html:span data-preserver-spaces="true"> if you can think of one or multiple of the following improvements:
+      </html:span>
+    </html:p>
+    <html:ul>
+      <html:li>
+        <html:span data-preserver-spaces="true">Adding more artifacts to the existing providers (e.g., more GitHub Repos
+          or
+          NPM packages you use frequently).</html:span>
+      </html:li>
+      <html:li>
+        <html:span data-preserver-spaces="true">Improving the implementation logic of existing providers</html:span>
+      </html:li>
+      <html:li>
+        <html:span data-preserver-spaces="true">To add additional providers that I forgot</html:span>
+      </html:li>
+      <html:li>
+        <html:span data-preserver-spaces="true">General improvements to the application</html:span>
+      </html:li>
+    </html:ul>
+    <html:br />
   </ScrollContainer>
 </mvc:View>
