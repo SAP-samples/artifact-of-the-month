@@ -15,7 +15,7 @@ Over the past few years, there has been a clear trend that SAP embraces open-sou
 </a>
 
 
-Click the screenshot above to jump directly to the running web app to see the sample live. In case you are curious about the code itself, continue reading here. 
+Click the screenshot above to jump directly to the running web app to see the sample live. In case you are curious about the code itself, [continue reading here](https://blogs.sap.com/2021/08/24/introducing-the-artifact-of-the-month/). 
 
 
 ## Requirements
