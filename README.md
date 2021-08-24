@@ -8,9 +8,11 @@
 
 Over the past few years, there has been a clear trend that SAP embraces open-source technologies more and more. This means that SAP leverages open-source technologies like Cloud Foundry and Kubernetes in its offerings and that SAP technologies become embeddable on open-source platforms. This development brings a need for a growing number of utility packages that support developers, such as database clients, authentication libraries, scaffoldings tools, and many more. All these packages make the life of developers easier but staying ahead of the curve and being aware of all available packages can also be an additional burden. Therefore, we want to introduce you to a new open-source project that ranks the popularity of all kinds of development artifacts monthly: 
 
-[**The Artifact of the Month**](TODO_insert).
+[**The Artifact of the Month**](https://sap-samples.github.io/artifact-of-the-month/).
 
-![demo](app.png)
+<a href="https://sap-samples.github.io/artifact-of-the-month/" target="_blank">
+<img src="app.png" alt="screenshot of the ranking"/>
+</a>
 
 
 Click the screenshot above to jump directly to the running web app to see the sample live. In case you are curious about the code itself, continue reading here. 
