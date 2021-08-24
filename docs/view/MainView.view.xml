@@ -49,9 +49,7 @@
                 source : { 
                   pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ' 
                 },
-                relative: true,
-                relativeScale: 'auto',
-                relativeStyle: 'wide'
+                relative: false
               } 
             }) }" />
             <ToolbarSpacer />
