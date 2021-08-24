@@ -15,3 +15,7 @@
 .sapMScrollContScroll {
     height: 100%;
 }
+
+.sapMFT > em {
+    background: #826ae2;
+}

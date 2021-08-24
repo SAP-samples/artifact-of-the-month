@@ -7,8 +7,7 @@
 
     <VBox id="trend-item-inner-box" class="sapUiSmallMargin min-width-zero">
       <Link id="trend-title" text="{$this>name}" href="{trendData>link}" target="_blank" emphasized="true" />
-      <Label id="trend-desc" text="{$this>description}" wrapping="true" />
-      <!-- <Label id="trend-score" text="{= 'Score: '+ ${trendData>score} }" /> -->
+      <FormattedText id="trend-desc" htmlText="{$this>description}" />
       <HBox id="trend-item-tags-box" class="sapUiTinyMarginTop" wrap="Wrap">
         <tnt:InfoLabel id="trend-item-type" class="sapUiTinyMarginEnd" text="{$this>type}" renderMode="Narrow"
           colorScheme="2" displayOnly="true" />
