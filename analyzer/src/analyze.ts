@@ -5,7 +5,7 @@ import { getMonthIdentifier, withinLastMonth, zScore } from "./helper";
 import { TrendsFile, Ranking } from "./types";
 
 // 1. Parse the most recent stats
-const currentMonth = getMonthIdentifier();
+const currentMonth = getMonthIdentifier(-1);
 const currentFilename = `data/raw-${currentMonth}.json`;
 const currentArtifactsContent = readFileSync(currentFilename, "utf8");
 const currentArtifacts = JSON.parse(currentArtifactsContent);
@@ -57,7 +57,7 @@ let pastRanking: TrendsFile = {
     recentlyUpdated: [],
     newlyAdded: [],
 };
-const pastMonth = getMonthIdentifier(-1);
+const pastMonth = getMonthIdentifier(-2);
 const pastRankingFilename = `data/trends-${pastMonth}.json`;
 try {
     const pastRankingContent = readFileSync(pastRankingFilename, "utf8");
