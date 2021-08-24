@@ -42,6 +42,18 @@ sap.ui.define([], function () {
             });
         },
 
+        formatHighlight: function (string, highlight) {
+            if (!highlight) {
+                return string;
+            }
+            const start = string.toLowerCase().indexOf(highlight.toLowerCase());
+            if (start >= 0) {
+                const end = start + highlight.length;
+                return `${string.slice(0, start)}<em>${string.slice(start, end)}</em>${string.slice(end)}`;
+            }
+            return string;
+        },
+
         containsDockerImages: function (allItem) {
             return allItem && allItem.some(function (item) {
                 return item.type === "docker-image";
