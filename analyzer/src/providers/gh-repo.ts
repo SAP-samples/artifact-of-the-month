@@ -1,10 +1,12 @@
 const { Octokit } = require("@octokit/core");
+import axios from "axios";
 import { Artifact } from "../types";
 
 export default class GitHubRepositoriesProvider {
     static source = "github-packages";
 
     static repos: string[] = ["cloudfoundry-incubator/multiapps-cli-plugin", "nzamani/sap-cloud-connector-docker"];
+    static asyncRepos: string[] = ["https://raw.githubusercontent.com/dotabap/dotabap-list/main/list.json"]
     static users: string[] = ["saphanaacademy"];
     static orgs: string[] = [
         "sap-samples",
@@ -111,6 +113,13 @@ export default class GitHubRepositoriesProvider {
     }
 
     static async get(lastMonth: any): Promise<Artifact[]> {
+        const asyncRepos = await Promise.all(
+            this.asyncRepos.map(async (url: string) => {
+                const res = await axios(url);
+                return res.data;
+            })
+        )
+
         const artifacts = await Promise.all([
             ...this.orgs.map(
                 async (org: string) => await this.fetchOrgRepos(org, 0)
@@ -121,13 +130,16 @@ export default class GitHubRepositoriesProvider {
             ...this.repos.map(
                 async (repo: string) => await this.fetchSingleRepos(repo, 0)
             ),
+            ...asyncRepos.flat().map(
+                async (repo: string) => await this.fetchSingleRepos(repo, 0)
+            ),
         ]);
 
         const ids = new Set();
 
         return artifacts
             .flat()
-            .filter((rawRepo: any) => {
+            .filter((rawRepo: any) => { //filter dups
                 if (ids.has(rawRepo.full_name)) {
                     return false;
                 }
