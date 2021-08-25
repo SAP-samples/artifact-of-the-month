@@ -57,6 +57,7 @@ export default class NpmProvider {
         "openui5",
         "sap-cloud-sdk",
         "ui5",
+        "abaplint",
         "sap-theming",
         "sap-devx",
         "fundamental-ngx"

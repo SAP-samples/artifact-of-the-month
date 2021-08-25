@@ -4,7 +4,7 @@ import { Artifact } from "../types";
 export default class DockerHubProvider {
     static source = "dockerhub-images";
 
-    static users: string[] = ["iobert", "sapmachine", "sapcc", "qmacro"];
+    static users: string[] = ["iobert", "sapmachine", "abaplint", "sapcc", "qmacro"];
 
     static async fetchImages(url: string, lastMonth: any): Promise<Artifact[]> {
         const res = await axios(url);
