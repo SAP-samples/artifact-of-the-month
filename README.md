@@ -70,5 +70,5 @@ Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved. This
 [test-url]: https://github.com/SAP-samples/artifact-of-the-month/actions/workflows/main.yaml
 [daviddm-image]: https://img.shields.io/david/SAP-samples/artifact-of-the-month.svg
 [daviddm-url]: https://david-dm.org/SAP-samples/artifact-of-the-month
-[reuse-image]: https://api.reuse.software/badge/github.com/SAP-samples/artifact-of-the-month/
-[reuse-url]: https://api.reuse.software/info/github.com/SAP-samples/artifact-of-the-month/
+[reuse-image]: https://api.reuse.software/badge/github.com/SAP-samples/artifact-of-the-month
+[reuse-url]: https://api.reuse.software/info/github.com/SAP-samples/artifact-of-the-month
