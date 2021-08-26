@@ -2,7 +2,7 @@
   xmlns:aow="aow.artifact.control" controllerName="aow.artifact.controller.MainView">
 
   <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%">
-    <List id="all-list" growing="true" growingThreshold="25" growingScrollToLoad="true"
+    <List id="all-list" growing="true" growingThreshold="25" 
       items="{path: 'allItemsData>/'}">
       <headerToolbar>
         <OverflowToolbar id="all-list-bar">
