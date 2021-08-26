@@ -2,19 +2,31 @@
   xmlns:core="sap.ui.core" controllerName="aow.artifact.controller.MainView">
   <tnt:ToolPage id="toolPage" sideExpanded="{settings>/sidebarExpanded}">
     <tnt:header>
-      <f:ShellBar id="shellbar" title="{i18n>title}" showMenuButton="true" homeIcon="resources/img/favicon.ico"
-        menuButtonPressed="onMenuButtonPress">
-        <f:additionalContent>
-          <!-- This content is some kind of a hack  -->
-          <core:Icon id="barDarkIcon" visible="{device>/orientation/landscape}" src="sap-icon://energy-saving-lightbulb"
-            color="{= !${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>dark}" />
-          <Switch id="barThemeSwitch" visible="{device>/orientation/landscape}" state="{settings>/lightTheme}"
-            customTextOff="{i18n>dark}" customTextOn="{i18n>light}" change="onToggleTheme"
-            tooltip="{= ${settings>/lightTheme} ? ${i18n>dark} : ${i18n>light} }" />
-          <core:Icon id="barLightIcon" visible="{device>/orientation/landscape}" src="sap-icon://circle-task-2"
-            color="{= ${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>light}" />
-        </f:additionalContent>
-      </f:ShellBar>
+      <tnt:ToolHeader>
+        <Button icon="sap-icon://menu2" type="Transparent" press="onMenuButtonPress">
+          <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow" />
+          </layoutData>
+        </Button>
+        <Image src="resources/img/favicon.ico">
+          <layoutData>
+            <OverflowToolbarLayoutData priority="Disappear" />
+          </layoutData>
+        </Image>
+        <Text text="{i18n>title}" wrapping="false">
+          <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow" />
+          </layoutData>
+        </Text>
+        <ToolbarSpacer />
+        <core:Icon id="barDarkIcon" visible="{device>/orientation/landscape}" src="sap-icon://energy-saving-lightbulb"
+          color="{= !${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>dark}" />
+        <Switch id="barThemeSwitch" visible="{device>/orientation/landscape}" state="{settings>/lightTheme}"
+          customTextOff="{i18n>dark}" customTextOn="{i18n>light}" change="onToggleTheme"
+          tooltip="{= ${settings>/lightTheme} ? ${i18n>dark} : ${i18n>light} }" />
+        <core:Icon id="barLightIcon" visible="{device>/orientation/landscape}" src="sap-icon://circle-task-2"
+          color="{= ${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>light}" class="sapUiMediumMarginEnd" />
+      </tnt:ToolHeader>
     </tnt:header>
     <tnt:sideContent>
       <tnt:SideNavigation id="sideNav" selectedKey="{settings>/currentHash}" itemSelect="onNavPage">
