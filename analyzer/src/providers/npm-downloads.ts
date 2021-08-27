@@ -49,7 +49,12 @@ export default class NpmProvider {
         "fundamental-styles",
         "cds-swagger-ui-express",
         "orientjs",
-        "orientjs-native"
+        "orientjs-native",
+        "abappretty",
+        "convert_saplogon",
+        "abap_test_runner_cli",
+        "abap_cloud_platform",
+        "abap-adt-api"
     ];
 
     static scopes: string[] = [
@@ -60,7 +65,8 @@ export default class NpmProvider {
         "abaplint",
         "sap-theming",
         "sap-devx",
-        "fundamental-ngx"
+        "fundamental-ngx",
+        "abaplint"
     ];
 
     static async fetchPackagesFromScope(searchParam: {
