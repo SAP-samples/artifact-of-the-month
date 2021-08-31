@@ -72,7 +72,7 @@
             "allItemsData": {
                 "type": "sap.ui.model.json.JSONModel",
                 "settings": {
-                    "sizeLimit": 1000
+                    "sizeLimit": 2000
                 },
                 "dataSource": "allItemsDataSource"
             }
