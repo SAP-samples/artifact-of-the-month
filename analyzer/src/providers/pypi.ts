@@ -73,13 +73,14 @@ export default class PiPyPackagesProvider {
             "max(timestamp) AS last_download_during_period, min(timestamp) AS first_download_during_period " +
             "FROM `sap_packages_lastinfo` p, " +
             "`bigquery-public-data.pypi.file_downloads` d " +
-            "WHERE DATE(timestamp) BETWEEN DATE_TRUNC(CURRENT_DATE(), MONTH) AND CURRENT_DATE() " +
+            // "WHERE DATE(timestamp) BETWEEN DATE_TRUNC(CURRENT_DATE(), MONTH) AND CURRENT_DATE() " + // between the first day of the current month and now - for local testing
+            "WHERE DATE(timestamp) BETWEEN DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY) " +  // between first day and last day of previous month - for deployment
             "AND p.filename = d.file.filename " +
             "GROUP BY name, last_version, last_upload_time, last_summary, last_home_page, last_license, last_keywords, first_upload_time " +
             "ORDER BY curr_month_downloads DESC;";
 
         const [job] = await this.bigquery.createQueryJob({
-            query: query,
+            query,
             location: "US",
         });
 

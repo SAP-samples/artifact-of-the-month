@@ -15,15 +15,17 @@ export function withinLastMonth(date: string) {
     return baseDate > d;
 }
 
-export function getFirstDayOfMonth() {
-    const date = new Date();
+export function getFirstDayOfMonth(monthDiff: number = 0) {
+    let date = new Date();
+    date.setMonth(date.getMonth() + monthDiff);
     const twoDigitMonth =
         date.getMonth() < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
     return `${date.getFullYear()}-${twoDigitMonth}-01`;
 }
 
-export function getLastDayOfMonth() {
-    const date = new Date();
+export function getLastDayOfMonth(monthDiff: number = 0) {
+    let date = new Date();
+    date.setMonth(date.getMonth() + monthDiff);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const twoDigitMonth =
         lastDay.getMonth() < 9 ? `0${lastDay.getMonth() + 1}` : lastDay.getMonth() + 1;

@@ -6,8 +6,8 @@ import { getMonthIdentifier } from "./helper";
 import { Artifact } from "./types";
 
 (async () => {
-    const lastMonth = getMonthIdentifier(-1);
-    const currentMonth = getMonthIdentifier();
+    const lastMonth = getMonthIdentifier(-2);
+    const currentMonth = getMonthIdentifier(-1);
 
     let lastWeek = {};
     try {

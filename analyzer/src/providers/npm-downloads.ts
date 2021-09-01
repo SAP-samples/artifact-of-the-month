@@ -11,8 +11,8 @@ function sleep(ms: number) {
 // could use bulk API if needed, but no support for scoped packages
 // 2021-07-01:2021-07-31/express,generator-easy-ui5
 async function getMonthlyDownloads(packageName: string): Promise<number | null> {
-    const start = getFirstDayOfMonth();
-    const end = getLastDayOfMonth();
+    const start = getFirstDayOfMonth(-1);
+    const end = getLastDayOfMonth(-1);
     try {
         const res = await axios(`https://api.npmjs.org/downloads/point/${start}:${end}/${packageName}`);
         if (res.data.package === packageName && res.data.downloads > -1) {
