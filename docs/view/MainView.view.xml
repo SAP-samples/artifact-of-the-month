@@ -19,13 +19,18 @@
           </layoutData>
         </Text>
         <ToolbarSpacer />
-        <core:Icon id="barDarkIcon" visible="{device>/orientation/landscape}" src="sap-icon://energy-saving-lightbulb"
-          color="{= !${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>dark}" />
-        <Switch id="barThemeSwitch" visible="{device>/orientation/landscape}" state="{settings>/lightTheme}"
-          customTextOff="{i18n>dark}" customTextOn="{i18n>light}" change="onToggleTheme"
+        <Image src="resources/img/github.png" height="50%" press="goToRepo" />
+        <Link text="{i18n>forkMe}" href="https://github.com/SAP-samples/artifact-of-the-month/"
+          visible="{= ${device>/orientation/landscape} || !${device>/browser/mobile} }" class="sapUiMediumMarginEnd" />
+        <core:Icon id="barDarkIcon" visible="{= ${device>/orientation/landscape} || !${device>/browser/mobile} }"
+          src="sap-icon://energy-saving-lightbulb" color="{= !${settings>/lightTheme} ? '#f9d001' : ''}"
+          tooltip="{i18n>dark}" />
+        <Switch id="barThemeSwitch" visible="{= ${device>/orientation/landscape} || !${device>/browser/mobile} }"
+          state="{settings>/lightTheme}" customTextOff="{i18n>dark}" customTextOn="{i18n>light}" change="onToggleTheme"
           tooltip="{= ${settings>/lightTheme} ? ${i18n>dark} : ${i18n>light} }" />
-        <core:Icon id="barLightIcon" visible="{device>/orientation/landscape}" src="sap-icon://circle-task-2"
-          color="{= ${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>light}" class="sapUiMediumMarginEnd" />
+        <core:Icon id="barLightIcon" visible="{= ${device>/orientation/landscape} || !${device>/browser/mobile} }"
+          src="sap-icon://circle-task-2" color="{= ${settings>/lightTheme} ? '#f9d001' : ''}" tooltip="{i18n>light}"
+          class="sapUiMediumMarginEnd" />
       </tnt:ToolHeader>
     </tnt:header>
     <tnt:sideContent>
