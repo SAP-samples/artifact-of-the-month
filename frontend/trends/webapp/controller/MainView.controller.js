@@ -21,6 +21,10 @@ sap.ui.define(
                     );
             },
 
+            goToRepo: function () {
+                window.open("https://github.com/SAP-samples/artifact-of-the-month/");
+            },
+
             onNavPage: function (oEvent) {
                 const model = this.getView().getModel("settings");
                 const item = oEvent.getParameter("item").getKey();
