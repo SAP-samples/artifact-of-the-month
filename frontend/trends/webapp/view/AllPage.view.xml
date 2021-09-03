@@ -8,7 +8,38 @@
         <OverflowToolbar id="all-list-bar">
           <Title id="all-bar-info" text="{i18n>all}" level="H4" />
           <ToolbarSpacer id="all-bar-spacer" />
-          <SearchField id="all-bar-search" width="60%" liveChange=".liveSearch" value="{settings>/search}" />
+          <SearchField id="all-bar-search" width="60%" liveChange=".liveSearch" value="{settings>/search}">
+          <layoutData>
+				      <OverflowToolbarLayoutData
+                shrinkable="true"
+                minWidth = "40%"/>
+			      </layoutData>
+          </SearchField>
+          <SegmentedButton id="trend-list-bar-segmented" selectionChange=".liveSearch" selectedKey="{settings>/filterSearch}"
+            class="sapUiSizeCompact sapUiTinyMarginTopBottom">
+            <layoutData>
+				      <OverflowToolbarLayoutData group="1"/>
+			      </layoutData>
+            <items>
+              <SegmentedButtonItem id="trend-list-bar-segment-1" text="{i18n>all}" key="all" />
+              <SegmentedButtonItem id="trend-list-bar-segment-2" text="{i18n>npm-packages}" key="npm-package" visible="{
+                  path: 'trendData>/overall',
+                  formatter: '.formatter.containsNpmPackages'
+                }" />
+              <SegmentedButtonItem id="trend-list-bar-segment-3" text="{i18n>code-repositories}" visible="{
+                  path: 'trendData>/overall',
+                  formatter: '.formatter.containsCodeRepositories'
+                }" key="code-repository" />
+              <SegmentedButtonItem id="trend-list-bar-segment-4" text="{i18n>pypi-packages}" key="pypi-package" visible="{
+                path: 'trendData>/overall',
+                formatter: '.formatter.containsPypiPackages'
+              }" />
+              <SegmentedButtonItem id="trend-list-bar-segment-5" text="{i18n>docker-images}" key="docker-image" visible="{
+                path: 'trendData>/overall',
+                formatter: '.formatter.containsDockerImages'
+              }" />
+            </items>
+          </SegmentedButton>
         </OverflowToolbar>
       </headerToolbar>
       <CustomListItem id="all-listitem">
