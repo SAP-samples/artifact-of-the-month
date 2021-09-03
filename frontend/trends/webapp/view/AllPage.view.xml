@@ -10,16 +10,13 @@
           <ToolbarSpacer id="all-bar-spacer" />
           <SearchField id="all-bar-search" width="60%" liveChange=".liveSearch" value="{settings>/search}">
           <layoutData>
-				      <OverflowToolbarLayoutData
+				  <OverflowToolbarLayoutData
                 shrinkable="true"
                 minWidth = "40%"/>
 			      </layoutData>
           </SearchField>
           <SegmentedButton id="trend-list-bar-segmented" selectionChange=".liveSearch" selectedKey="{settings>/filterSearch}"
             class="sapUiSizeCompact sapUiTinyMarginTopBottom">
-            <layoutData>
-				      <OverflowToolbarLayoutData group="1"/>
-			      </layoutData>
             <items>
               <SegmentedButtonItem id="trend-list-bar-segment-1" text="{i18n>all}" key="all" />
               <SegmentedButtonItem id="trend-list-bar-segment-2" text="{i18n>npm-packages}" key="npm-package" visible="{
