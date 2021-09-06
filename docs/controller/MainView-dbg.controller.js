@@ -21,6 +21,10 @@ sap.ui.define(
                     );
             },
 
+            goToRepo: function () {
+                window.open("https://github.com/SAP-samples/artifact-of-the-month/");
+            },
+
             onNavPage: function (oEvent) {
                 const model = this.getView().getModel("settings");
                 const item = oEvent.getParameter("item").getKey();
@@ -48,7 +52,11 @@ sap.ui.define(
             },
 
             liveSearch: function (oEvent) {
-                const value = oEvent.getParameter("newValue");
+                const model = this.getView().getModel("settings");
+                let value = model.getProperty("/search");
+                if(!value){value = ""}
+                let valueType  = model.getProperty("/filterSearch");
+                if(valueType === undefined ||  valueType === 'all'){valueType = ""}
                 const list = this.getView().byId("all-list");
                 const listBinding = list.getBinding("items");
                 const nameFilter = new sap.ui.model.Filter({
@@ -64,12 +72,16 @@ sap.ui.define(
                 const typeFilter = new sap.ui.model.Filter({
                     path: "type",
                     operator: sap.ui.model.FilterOperator.Contains,
-                    value1: value,
+                    value1: valueType,
                 });
+                const searchFilter = new sap.ui.model.Filter({
+                    filters: [nameFilter, descFilter],
+                    and: false,
+                })
                 listBinding.filter(
                     new sap.ui.model.Filter({
-                        filters: [nameFilter, descFilter, typeFilter],
-                        and: false,
+                        filters: [searchFilter, typeFilter],
+                        and: true,
                     })
                 );
             },

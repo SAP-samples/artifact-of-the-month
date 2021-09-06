@@ -43,6 +43,9 @@ sap.ui.define([], function () {
         },
 
         formatHighlight: function (string, highlight) {
+            if(!string){
+                return ""
+            }
             if (!highlight) {
                 return string;
             }

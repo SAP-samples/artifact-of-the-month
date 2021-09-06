@@ -6,7 +6,7 @@
       visible="{= !!${$this>rank} }" withMargin="true" />
 
     <VBox id="trend-item-inner-box" class="sapUiSmallMargin min-width-zero">
-      <Link id="trend-title" text="{$this>name}" href="{trendData>link}" target="_blank" emphasized="true" />
+      <Link id="trend-title" text="{$this>name}" href="{$this>link}" target="_blank" emphasized="true" />
       <FormattedText id="trend-desc" htmlText="{$this>description}" />
       <HBox id="trend-item-tags-box" class="sapUiTinyMarginTop" wrap="Wrap">
         <tnt:InfoLabel id="trend-item-type" class="sapUiTinyMarginEnd" text="{$this>type}" renderMode="Narrow"
