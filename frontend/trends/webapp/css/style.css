@@ -24,6 +24,6 @@
     font-size: 0.6rem;
 }
 
-.sapMLnk:not(.sapMLnkDsbl) {
+.sapMTB .sapMLnk:not(.sapMLnkDsbl) {
     text-shadow: 0 0 0.125rem #000;
 }
