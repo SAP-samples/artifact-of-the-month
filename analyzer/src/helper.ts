@@ -46,3 +46,11 @@ export function zScore(current: number, old: number[]) {
     }
     return score;
 }
+
+
+export function arraySum(summands: number[]) {
+    function add(accumulator: number, a: number) {
+        return accumulator + a;
+    }
+    return summands.reduce(add, 0);
+}

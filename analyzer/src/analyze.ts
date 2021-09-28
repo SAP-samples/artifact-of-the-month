@@ -1,7 +1,7 @@
 import glob from "glob";
 import { readFileSync, writeFileSync } from "fs";
 
-import { getMonthIdentifier, withinLastMonth, zScore } from "./helper";
+import { getMonthIdentifier, withinLastMonth, zScore, arraySum } from "./helper";
 import { TrendsFile, Ranking } from "./types";
 
 // 1. Parse the most recent stats
@@ -46,7 +46,7 @@ previousFilenames.map((path: string) => {
 
 // 4. Compute the z-score for each artifact
 currentArtifactIds.map((id: string) => {
-    timeseries[id].score = timeseries[id].series.length
+    timeseries[id].score = timeseries[id].series.length && arraySum(timeseries[id].series) > 0 //Condition to avoid "Infinity" result for first data point
         ? zScore(timeseries[id].currentCount, timeseries[id].series)
         : 0;
 });
