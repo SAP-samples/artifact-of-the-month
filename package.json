@@ -1,8 +1,7 @@
 {
     "name": "artifact-of-the-month",
-    "version": "0.0.1",
-    "description": "POC",
-    "private": true,
+    "version": "1.0.0",
+    "description": "A SAPUI5 application that ranks the popularity of SAP packages and repositories from multiple platforms. The usage data is pulled periodically from these platforms by GitHub Actions. The web app itself is hosted via GitHub Pages.",
     "scripts": {
         "fetch": "yarn workspace analyzer fetch",
         "analyze": "yarn workspace analyzer analyze",
