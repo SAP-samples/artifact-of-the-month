@@ -5,7 +5,7 @@ import { Artifact } from "../types";
 export default class GitHubRepositoriesProvider {
     static source = "github-packages";
 
-    static repos: string[] = ["cloudfoundry-incubator/multiapps-cli-plugin", "nzamani/sap-cloud-connector-docker", "marcellourbani/abap-adt-api"];
+    static repos: string[] = ["cloudfoundry-incubator/multiapps-cli-plugin", "nzamani/sap-cloud-connector-docker", "marcellourbani/abap-adt-api", "1DSAG/UI5-Best-Practice"];
     static asyncRepos: string[] = ["https://raw.githubusercontent.com/dotabap/dotabap-list/main/list.json"]
     static users: string[] = ["saphanaacademy"];
     static orgs: string[] = [
