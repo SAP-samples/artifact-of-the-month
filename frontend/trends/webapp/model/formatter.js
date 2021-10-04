@@ -1,13 +1,6 @@
 sap.ui.define([], function () {
     "use strict";
     return {
-        displayItem: function (type, currentFilter) {
-            if (currentFilter === "all") {
-                return true;
-            }
-            return type === currentFilter;
-        },
-
         formatRank: function (rank) {
             return +rank + 1;
         },
