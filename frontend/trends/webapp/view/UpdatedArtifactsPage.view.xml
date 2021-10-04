@@ -3,7 +3,7 @@
 
   <ScrollContainer id="trends-page" horizontal="false" vertical="true" height="100%">
     <!-- <Text id="trend-intro" text="{i18n>appDescription}" class="sapUiSmallMargin" /> -->
-    <List id="trend-list" growing="true" growingThreshold="25"
+    <List id="trend-list"
       items="{path: 'trendData>/recentlyUpdated'}" noDataText="{i18n>noRankingType}">
       <headerToolbar>
         <OverflowToolbar id="trend-list-bar">
