@@ -1,6 +1,6 @@
 sap.ui.define(
-    ["aow/artifact/controller/BaseController", "aow/artifact/model/formatter"],
-    function (Controller, formatter) {
+    ["aow/artifact/controller/BaseController", "aow/artifact/model/formatter","sap/ui/model/Filter","sap/ui/model/FilterOperator"],
+    function (Controller, formatter, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("aow.artifact.controller.MainView", {
@@ -49,6 +49,17 @@ sap.ui.define(
                 this.navTo(item);
                 model.setProperty("/currentHash", item);
                 model.setProperty("/filter", "all");
+            },
+
+            displayItem: function (event) {
+                const binding = this.byId("trend-list").getBinding("items");
+                const model = this.getView().getModel("settings");
+                let currentFilter = model.getProperty("/filter");
+                if (currentFilter === "all") {
+                    binding.filter([])
+                } else {
+                    binding.filter([new Filter('type', FilterOperator.EQ, currentFilter)])
+                }
             },
 
             liveSearch: function (oEvent) {

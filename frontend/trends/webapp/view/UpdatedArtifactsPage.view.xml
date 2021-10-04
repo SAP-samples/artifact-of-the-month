@@ -9,7 +9,7 @@
         <OverflowToolbar id="trend-list-bar">
           <Title id="trend-bar-info" text="{i18n>updated}" level="H4" />
           <ToolbarSpacer id="trend-bar-spacer" />
-          <SegmentedButton id="trend-list-bar-segmented" selectedKey="{settings>/filter}"
+          <SegmentedButton id="trend-list-bar-segmented" selectedKey="{settings>/filter}" selectionChange=".displayItem"
             class="sapUiSizeCompact sapUiTinyMarginTopBottom">
             <items>
               <SegmentedButtonItem id="trend-list-bar-segment-1" text="{i18n>all}" key="all" />
@@ -34,10 +34,7 @@
         </OverflowToolbar>
       </headerToolbar>
 
-      <CustomListItem id="trend-listitem" visible="{
-                  parts: ['trendData>type','settings>/filter'],
-                  formatter: '.formatter.displayItem'
-                }">
+      <CustomListItem id="trend-listitem">
         <aow:ArtifactListItemContent name="{trendData>name}" description="{trendData>description}"
           link="{trendData>link}" type="{trendData>type}" tags="{trendData>tags}" updatedAt="{trendData>updatedAt}"
           createdAt="{trendData>createdAt}" rank="{
