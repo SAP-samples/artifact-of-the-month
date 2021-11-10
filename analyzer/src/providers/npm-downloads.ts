@@ -54,7 +54,11 @@ export default class NpmProvider {
         "convert_saplogon",
         "abap_test_runner_cli",
         "abap_cloud_platform",
-        "abap-adt-api"
+        "abap-adt-api",
+        "ui5-nwabap-deployer-core",
+        "grunt-nwabap-ui5uploader",
+        "ui5-task-nwabap-deployer",
+        "ui5-nwabap-deployer-cli"
     ];
 
     static scopes: string[] = [
