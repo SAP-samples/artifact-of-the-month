@@ -6,7 +6,7 @@ import { TrendsFile, Ranking } from "./types";
 
 // 1. Parse the most recent stats
 const currentMonth = getMonthIdentifier(-1); //because the script runs on the first
-const currentFilename = `data/raw-${currentMonth}.json`;
+const currentFilename = `${__dirname}/../data/raw-${currentMonth}.json`;
 const currentArtifactsContent = readFileSync(currentFilename, "utf8");
 const currentArtifacts = JSON.parse(currentArtifactsContent);
 const currentArtifactIds = Object.keys(currentArtifacts);
@@ -27,7 +27,7 @@ currentArtifactIds.map((id: string) => {
 
 // 3. Build up the time series object
 const previousFilenames = glob
-    .sync("data/raw-*.json")
+    .sync(`${__dirname}/../data/raw-*.json`)
     .filter((path: string) => path !== currentFilename);
 
 previousFilenames.map((path: string) => {
@@ -58,7 +58,7 @@ let pastRanking: TrendsFile = {
     newlyAdded: [],
 };
 const pastMonth = getMonthIdentifier(-2);
-const pastRankingFilename = `data/trends-${pastMonth}.json`;
+const pastRankingFilename = `${__dirname}/../data/trends-${pastMonth}.json`;
 try {
     const pastRankingContent = readFileSync(pastRankingFilename, "utf8");
     pastRanking = JSON.parse(pastRankingContent);
