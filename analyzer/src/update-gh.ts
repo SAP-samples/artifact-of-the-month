@@ -9,14 +9,25 @@ import providers from "./providers";
 (async () => {
 
     // get current month data
-    const currentMonth = getMonthIdentifier(-1);
-    let currentMonthJson: any = {};
+    let currentTrendsJson: any = {};
+    let currentAllItemsJson: any = {};
     try {
-        const filecontent = readFileSync(
-            `${__dirname}/../data/raw-${currentMonth}.json`,
+        const filecontentTrends = readFileSync(
+            `${__dirname}/../../frontend/trends/webapp/model/trends.json`,
             "utf8"
         );
-        currentMonthJson = JSON.parse(filecontent);
+        currentTrendsJson = JSON.parse(filecontentTrends);
+    } catch (e) {
+        if (e.code !== "ENOENT") {
+            throw e;
+        }
+    }
+    try {
+        const filecontentAllItems = readFileSync(
+            `${__dirname}/../../frontend/trends/webapp/model/allItems.json`,
+            "utf8"
+        );
+        currentAllItemsJson = JSON.parse(filecontentAllItems);
     } catch (e) {
         if (e.code !== "ENOENT") {
             throw e;
@@ -24,7 +35,7 @@ import providers from "./providers";
     }
 
     // get data from github
-    const artifactsGithub: Artifact[] = await Providers[2].get(currentMonthJson)
+    const artifactsGithub: Artifact[] = await Providers[2].get(currentTrendsJson)
 
 
     const artifactsMap: any = {};
@@ -32,20 +43,44 @@ import providers from "./providers";
         artifactsMap[artifact.id] = artifact;
     });
 
-    // update current month data
+    //loop over new data and update current data
     for (let key in artifactsMap) {
         let newData = artifactsMap[key];
-        if (key in currentMonthJson) {
-            let currentData = currentMonthJson[key]
-            currentData['description'] = newData['description']
-            currentData['tags'] = newData['tags']
-            currentData['updatedAt'] = newData['updatedAt']
-        }
-
+        // find single object in dict array
+        currentTrendsJson.newlyAdded.forEach((item: any) => {
+            if (item.id === newData.id) {
+                item.description = newData.description;
+                item.tags = newData.tags;
+                item.updatedAt = newData.updatedAt;
+            }
+        });
+        currentTrendsJson.overall.forEach((item: any) => {
+            if (item.id === newData.id) {
+                item.description = newData.description;
+                item.tags = newData.tags;
+                item.updatedAt = newData.updatedAt;
+            }
+        });
+        currentTrendsJson.recentlyUpdated.forEach((item: any) => {
+            if (item.id === newData.id) {
+                item.description = newData.description;
+                item.tags = newData.tags;
+                item.updatedAt = newData.updatedAt;
+            }
+        });
+        currentAllItemsJson.forEach((item: any) => {
+            if (item.id === newData.id) {
+                item.description = newData.description;
+                item.tags = newData.tags;
+                item.updatedAt = newData.updatedAt;
+            }
+        });
     }
 
+    // write new data to frontend data
     writeFileSync(
-        `${__dirname}/../data/raw-${currentMonth}.json`,
-        JSON.stringify(currentMonthJson)
+        `${__dirname}/../../frontend/trends/webapp/model/allItems.json`,
+        JSON.stringify(currentAllItemsJson)
     );
+    writeFileSync(`${__dirname}/../../frontend/trends/webapp/model/trends.json`, JSON.stringify(currentTrendsJson));
 })();
