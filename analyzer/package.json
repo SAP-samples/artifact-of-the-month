@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "fetch": "ts-node src/index.ts",
+        "update-gh": "ts-node src/update-gh.ts",
         "test": "ts-node src/test.ts",
         "analyze": "ts-node src/analyze.ts && yarn move",
         "move": "mv data/trends.json ../frontend/trends/webapp/model/trends.json && mv data/allItems.json ../frontend/trends/webapp/model/allItems.json",
