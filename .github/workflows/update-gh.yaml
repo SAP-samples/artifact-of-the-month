@@ -3,7 +3,7 @@ name: Update Github Data
 on:
     workflow_dispatch:
     schedule:
-      - cron:  '0 0 1 * *' # run on the first of each month
+      - cron: '0 8 * * *' # runs every day at 8
 
 jobs:
     monthly-update:
