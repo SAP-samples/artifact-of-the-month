@@ -3,7 +3,10 @@
 
   <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%">
     <List id="all-list" growing="true" growingThreshold="25" 
-      items="{path: 'allItemsData>/'}">
+      items="{path: 'allItemsData>/', sorter : {
+            path : 'name',
+            descending: false
+         }}">
       <headerToolbar>
         <OverflowToolbar id="all-list-bar">
           <Title id="all-bar-info" text="{i18n>all}" level="H4" />
@@ -15,6 +18,7 @@
                 minWidth = "40%"/>
 			      </layoutData>
           </SearchField>
+          <Button id="all-bar-sort" icon="sap-icon://sort" press=".openSettingsDialog" />
           <SegmentedButton id="trend-list-bar-segmented" selectionChange=".liveSearch" selectedKey="{settings>/filterSearch}"
             class="sapUiSizeCompact sapUiTinyMarginTopBottom">
             <items>
