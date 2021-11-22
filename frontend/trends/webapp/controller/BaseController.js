@@ -67,6 +67,16 @@ sap.ui.define(
                     this.getRouter().navTo("appHome", {}, true /*no history*/);
                 }
             },
+
+            /**
+             * Convenience method for return if user is on mobile
+             * @public
+             * @returns {boolean} returns true if the user is on mobile
+             */
+            isMobile: function () {
+                return !this.getModel("device").getProperty("/orientation/landscape") ||
+                this.getModel("device").getProperty("/browser/mobile")
+            }
         });
     }
 );
