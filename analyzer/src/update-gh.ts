@@ -1,7 +1,7 @@
 require("dotenv").config();
 import { readFileSync, writeFileSync } from "fs";
 
-import Providers from "./providers";
+import  GitHubRepositoriesProvider  from "./providers/gh-repo";
 import { getMonthIdentifier } from "./helper";
 import { Artifact } from "./types";
 import providers from "./providers";
@@ -35,7 +35,7 @@ import providers from "./providers";
     }
 
     // get data from github
-    const artifactsGithub: Artifact[] = await Providers[2].get(currentTrendsJson)
+    const artifactsGithub: Artifact[] = await GitHubRepositoriesProvider.get(currentTrendsJson)
 
 
     const artifactsMap: any = {};
