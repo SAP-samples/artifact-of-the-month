@@ -49,6 +49,10 @@ sap.ui.define(
                 this.navTo(item);
                 model.setProperty("/currentHash", item);
                 model.setProperty("/filter", "all");
+                // collapse sidebar after navigation if on mobile
+                if (this.isMobile()) {
+                    model.setProperty("/sidebarExpanded", false);
+                }
             },
 
             displayItem: function (event) {
