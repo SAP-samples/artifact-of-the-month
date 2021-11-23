@@ -3,7 +3,7 @@
 
     <NumericContent id="trend-rank" value="{$this>rank}" valueColor="{$this>rankColor}"
       indicator="{$this>rankIndicator}" tooltip="{$this>rankTooltip}" class="sapUiSmallMarginTop"
-      visible="{= !!${$this>rank} }" withMargin="true" />
+      visible="{= !!${$this>rank} &amp;&amp; ${$this>showRank}}" withMargin="true" />
 
     <VBox id="trend-item-inner-box" class="sapUiSmallMargin min-width-zero">
       <Link id="trend-title" text="{$this>name}" href="{$this>link}" target="_blank" emphasized="true" />
