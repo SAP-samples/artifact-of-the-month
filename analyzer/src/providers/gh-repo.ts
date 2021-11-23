@@ -1,4 +1,7 @@
 const { Octokit } = require("@octokit/core");
+const { throttling } = require("@octokit/plugin-throttling");
+const MyOctokit = Octokit.plugin(throttling);
+
 import axios from "axios";
 import { Artifact } from "../types";
 
@@ -17,8 +20,28 @@ export default class GitHubRepositoriesProvider {
         "abaplint",
     ];
 
-    static octokit = new Octokit({
+
+    static octokit = new MyOctokit({
         auth: process.env.GITHUB_TOKEN,
+        throttle: {
+            onRateLimit: (retryAfter: any, options: any) => {
+              GitHubRepositoriesProvider.octokit.log.warn(
+                `Request quota exhausted for request ${options.method} ${options.url}`
+              );
+        
+              // Retry twice after hitting a rate limit error, then give up
+              if (options.request.retryCount <= 2) {
+                console.log(`Retrying after ${retryAfter} seconds!`);
+                return true;
+              }
+            },
+            onAbuseLimit: (retryAfter: any, options: any) => {
+              // does not retry, only logs a warning
+              GitHubRepositoriesProvider.octokit.log.warn(
+                `Abuse detected for request ${options.method} ${options.url}`
+              );
+            },
+          },
     });
 
     static transformRepo(rawRepo: any, lastMonth: any) {

@@ -26,6 +26,7 @@
         "@google-cloud/bigquery": "^5.8.0",
         "@octokit/auth-token": "^2.4.5",
         "@octokit/core": "^3.5.1",
+        "@octokit/plugin-throttling": "^3.5.2",
         "axios": "^0.21.1",
         "dotenv": "^10.0.0",
         "glob": "^7.1.7",
