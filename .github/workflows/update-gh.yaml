@@ -1,0 +1,30 @@
+name: Update Github Data
+
+on:
+    workflow_dispatch:
+    schedule:
+      - cron: '0 8 * * *' # runs every day at 8
+
+jobs:
+    monthly-update:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: 14
+                  cache: yarn
+
+            - run: yarn install
+
+            - run: yarn run update-gh
+              env:
+                GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+
+            - uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: Update GitHub Data

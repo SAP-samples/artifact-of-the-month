@@ -4,7 +4,7 @@ export function getMonthIdentifier(monthDiff: number = 0) {
     let d = new Date();
     d.setMonth(d.getMonth() + monthDiff);
     return d
-        .toLocaleString("default", { month: "short", year: "2-digit" })
+        .toLocaleString("en-US", { month: "short", year: "2-digit" })
         .replace(/ /g, "-");
 }
 
