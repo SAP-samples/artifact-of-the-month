@@ -40,16 +40,7 @@
       <CustomListItem id="trend-listitem">
         <aow:ArtifactListItemContent name="{trendData>name}" description="{trendData>description}"
           link="{trendData>link}" type="{trendData>type}" tags="{trendData>tags}" updatedAt="{trendData>updatedAt}"
-          createdAt="{trendData>createdAt}" rank="{
-              path: 'trendData>rank',
-              formatter: '.formatter.formatRank'
-            }" rankIndicator="{
-              parts: ['trendData>rank','trendData>pastRank'],
-              formatter: '.formatter.formatIndicator'
-            }" rankTooltip="{
-              parts: ['trendData>pastRank'],
-              formatter: '.formatter.formatPastRankTooltip'
-            }" />
+          createdAt="{trendData>createdAt}" showRank="False"/>
       </CustomListItem>
     </List>
   </ScrollContainer>
