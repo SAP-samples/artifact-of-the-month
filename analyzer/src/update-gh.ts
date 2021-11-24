@@ -79,8 +79,8 @@ import providers from "./providers";
 
     // write new data to frontend data
     writeFileSync(
-        `${__dirname}/../../frontend/trends/webapp/model/allItems.json`,
+        `${__dirname}/../../docs/model/allItems.json`,
         JSON.stringify(currentAllItemsJson)
     );
-    writeFileSync(`${__dirname}/../../frontend/trends/webapp/model/trends.json`, JSON.stringify(currentTrendsJson));
+    writeFileSync(`${__dirname}/../../docs/model/trends.json`, JSON.stringify(currentTrendsJson));
 })();
