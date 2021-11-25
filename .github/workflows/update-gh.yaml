@@ -6,7 +6,7 @@ on:
       - cron: '0 8 * * *' # runs every day at 8
 
 jobs:
-    monthly-update:
+    get-write-github-data:
         runs-on: ubuntu-latest
         permissions:
             contents: write
