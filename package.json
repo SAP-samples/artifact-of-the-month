@@ -8,7 +8,7 @@
         "start": "yarn workspace frontend start",
         "build": "yarn workspace frontend build",
         "all": "run-s fetch analyze build",
-        "update-gh": "yarn workspace analyzer update-gh",
+        "update-daily": "yarn workspace analyzer update-daily",
         "prettier": "prettier --write ."
     },
     "author": "SAP SE",
