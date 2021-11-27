@@ -1,5 +1,5 @@
 <mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
-  xmlns:aow="aow.artifact.control" controllerName="aow.artifact.controller.MainView">
+  xmlns:aow="aow.artifact.control" controllerName="aow.artifact.controller.AllPage">
 
   <ScrollContainer id="all-page" horizontal="false" vertical="true" height="100%">
     <List id="all-list" growing="true" growingThreshold="25" 
