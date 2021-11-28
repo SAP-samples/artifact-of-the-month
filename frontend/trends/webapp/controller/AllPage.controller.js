@@ -23,6 +23,7 @@ sap.ui.define(
                 if (this._oRouterArgs["?query"].search || this._oRouterArgs["?query"].filterType) {
                     this._applySearchFilter(this._oRouterArgs["?query"].search, this._oRouterArgs["?query"].filterType);
                 }
+                // make sure always key and descending are set
                 if (this._oRouterArgs["?query"].sortKey && this._oRouterArgs["?query"].descending) {
                     this._applySorting(this._oRouterArgs["?query"].sortKey, this._oRouterArgs["?query"].descending);
                 }
@@ -33,26 +34,47 @@ sap.ui.define(
                 let value = model.getProperty("/search");
                 let valueType = model.getProperty("/filterSearch");
                 this._applySearchFilter(value, valueType);
+                this._oRouterArgs["?query"].search = value;
+                this._oRouterArgs["?query"].filterType = valueType;
+                this._setQueryHash();
+            },
 
-                // update the hash with the current search term
-                if ( value !== undefined && value.length > 0 ) {
-                    this._oRouterArgs["?query"].search = value;
-                } else {
-                    // delete empty search term from hash
-                    if (this._oRouterArgs["?query"].hasOwnProperty("search")) {
-                        delete this._oRouterArgs["?query"].search;
-                    }
+
+            // opens view settings dialog
+            openSettingsDialog: function () {
+                var oView = this.getView();
+
+                if (!this._settingsDialog) {
+                    this._settingsDialog = Fragment.load({
+                        id: oView.getId(),
+                        name: "aow.artifact.fragment.Dialog",
+                        controller: this
+                    }).then(function (oDialog) {
+                        oView.addDependent(oDialog);
+                        return oDialog;
+                    });
                 }
-                if (valueType !== undefined && valueType.length > 0 ) {
-                    this._oRouterArgs["?query"].filterType = valueType;
-                }
-                this.oRouter.navTo("all", this._oRouterArgs, true /*no history*/);
+                this._settingsDialog.then(function (oDialog) {
+                    // opens the requested dialog
+                    oDialog.open();
+                });
+            },
+
+            // apply sorting parameters from view settings dialog
+            handleConfirm: function (oEvent) {
+                var key = oEvent.getParameter("sortItem").getKey();
+                var descending = oEvent.getParameter("sortDescending")
+                this._applySorting(key, descending);
+                this._oRouterArgs["?query"].sortKey = key;
+                this._oRouterArgs["?query"].descending = descending;
+                this._setQueryHash();
+
             },
 
             _applySearchFilter: function (value, valueType) {
                 if (!value) { value = "" }
                 if (valueType === undefined || valueType === 'all') { valueType = "" }
-                // make sure values are set in model
+                // make sure values are set in model, needed for formatter
                 this.getView().getModel("settings").setProperty("/search", value);
                 this.getView().getModel("settings").setProperty("/filterSearch", valueType);
                 const list = this.getView().byId("all-list");
@@ -84,45 +106,30 @@ sap.ui.define(
                 );
             },
 
-            // opens view settings dialg
-            openSettingsDialog: function () {
-                var oView = this.getView();
-
-                if (!this._settingsDialog) {
-                    this._settingsDialog = Fragment.load({
-                        id: oView.getId(),
-                        name: "aow.artifact.fragment.Dialog",
-                        controller: this
-                    }).then(function (oDialog) {
-                        oView.addDependent(oDialog);
-                        return oDialog;
-                    });
-                }
-                this._settingsDialog.then(function (oDialog) {
-                    // opens the requested dialog
-                    oDialog.open();
-                });
-            },
-
-            // apply sorting parameters
-            handleConfirm: function (oEvent) {
-                var key = oEvent.getParameter("sortItem").getKey();
-                var descending = oEvent.getParameter("sortDescending")
-                this._applySorting(key, descending);
-                this._oRouterArgs["?query"].sortKey = key;
-                this._oRouterArgs["?query"].descending = descending;
-                this.oRouter.navTo("all", this._oRouterArgs, true /*no history*/);
-
-            },
-
             _applySorting: function (key, descending) {
-
                 const listBinding = this.getView().byId("all-list").getBinding("items");
                 const oSorter = new Sorter({
                     path: key,
                     descending: descending,
                 });
                 listBinding.sort(oSorter);
+            },
+
+            _setQueryHash: function () {
+                // sort dict this._oRouterArgs["?query"] by key (make sure keys are always same order)
+                const querySorted = Object.keys(this._oRouterArgs["?query"]).sort().reduce((obj, key) => {
+                    obj[key] = this._oRouterArgs["?query"][key];
+                    return obj;
+                }, {});
+
+                var queryString = "all?";
+                // concat query string for hash with loop over dict
+                for (var key in querySorted) {
+                    if (querySorted[key] !== undefined && querySorted[key] !== null && querySorted[key] !== "") {
+                        queryString += "&" + key + "=" + querySorted[key];
+                    }
+                }
+                this.oRouter.getHashChanger().setHash(queryString)
             }
         });
     }
