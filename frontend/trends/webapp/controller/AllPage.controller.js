@@ -23,8 +23,8 @@ sap.ui.define(
                 if (this._oRouterArgs["?query"].search || this._oRouterArgs["?query"].filterType) {
                     this._applySearchFilter(this._oRouterArgs["?query"].search, this._oRouterArgs["?query"].filterType);
                 }
-                // make sure always key and descending are set
-                if (this._oRouterArgs["?query"].sortKey && this._oRouterArgs["?query"].descending) {
+                // make sure always key and descending are set and valid
+                if (this._validateSortingParameter(this._oRouterArgs["?query"].sortKey, this._oRouterArgs["?query"].descending)) {
                     this._applySorting(this._oRouterArgs["?query"].sortKey, this._oRouterArgs["?query"].descending);
                 }
             },
@@ -73,7 +73,9 @@ sap.ui.define(
 
             _applySearchFilter: function (value, valueType) {
                 if (!value) { value = "" }
-                if (valueType === undefined || valueType === 'all') { valueType = "" }
+                if (!this._validateFilterType(valueType)) {
+                    valueType = "";
+                }
                 // make sure values are set in model, needed for formatter
                 this.getView().getModel("settings").setProperty("/search", value);
                 this.getView().getModel("settings").setProperty("/filterSearch", valueType);
@@ -123,13 +125,53 @@ sap.ui.define(
                 }, {});
 
                 var queryString = "all?";
-                // concat query string for hash with loop over dict
+                // concat query string for hash with loop over dict, the first one without "&"
                 for (var key in querySorted) {
                     if (querySorted[key] !== undefined && querySorted[key] !== null && querySorted[key] !== "") {
-                        queryString += "&" + key + "=" + querySorted[key];
+                        // the first one without "&"
+                        if (key === Object.keys(querySorted)[0]) {
+                            queryString += key + "=" + querySorted[key];
+                        } else {
+                            queryString += "&" + key + "=" + querySorted[key];
+                        }
                     }
                 }
                 this.oRouter.getHashChanger().setHash(queryString)
+            },
+
+            _validateFilterType(filterType) {
+                var filterTypeKeys = this.byId("trend-list-bar-segmented").getItems();
+                var validFilterType = false;
+                for (var i = 0; i < filterTypeKeys.length; i++) {
+                    if (filterTypeKeys[i].getKey() === filterType) {
+                        validFilterType = true
+                    }
+                }
+                if (filterType && filterType !== "" && filterType !== "all" && validFilterType) {
+                    return true
+                } else {
+                    return false
+                }
+            },
+
+            _validateSortingParameter(sortKey, descending) {
+                if (!sortKey && sortKey === "" && sortKey === null && descending === undefined && descending === null) {
+                    return false
+                }
+                // currently check only hardcoded keys from dialog fragment
+                var validSortKey = false;
+                if (sortKey === "name" || sortKey === "updatedAt" || sortKey === "createdAt") {
+                    validSortKey =  true;
+                }
+                var validDescending = false;
+                if (descending === "true" || descending === "false") {
+                    validDescending = true;
+                }
+                if (validSortKey && validDescending) {
+                    return true
+                } else {
+                    return false
+                }
             }
         });
     }
