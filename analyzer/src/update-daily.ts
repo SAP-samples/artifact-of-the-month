@@ -2,6 +2,7 @@ require("dotenv").config();
 import { readFileSync, writeFileSync } from "fs";
 
 import  GitHubRepositoriesProvider  from "./providers/gh-repo";
+import  NpmProvider  from "./providers/npm-downloads";
 import { getMonthIdentifier } from "./helper";
 import { Artifact } from "./types";
 import providers from "./providers";
@@ -34,12 +35,24 @@ import providers from "./providers";
         }
     }
 
-    // get data from github
-    const artifactsGithub: Artifact[] = await GitHubRepositoriesProvider.get(currentTrendsJson)
+    // update only github an npm
+    const Providers = [
+        GitHubRepositoriesProvider,
+        NpmProvider
+    ];
+
+    const artifacts = await Promise.all(
+        Providers.map(async (provider) => {
+            console.log(`Start provider '${provider.name}'.`);
+            const items: Artifact[] = await provider.get(currentTrendsJson);
+            console.log(`Provider '${provider.name}' returned ${items.length} items.`);
+            return items;
+        })
+    );
 
 
     const artifactsMap: any = {};
-    artifactsGithub.flat().forEach((artifact: any) => {
+    artifacts.flat().forEach((artifact: any) => {
         artifactsMap[artifact.id] = artifact;
     });
 

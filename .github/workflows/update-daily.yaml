@@ -21,7 +21,7 @@ jobs:
 
             - run: yarn install
 
-            - run: yarn run update-gh
+            - run: yarn run update-daily
               env:
                 GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
 
