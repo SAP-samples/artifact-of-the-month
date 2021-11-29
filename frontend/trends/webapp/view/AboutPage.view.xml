@@ -245,19 +245,17 @@
         <html:strong>Recently Updated Artifacts</html:strong>
         <html:ul>
           <html:li class="ql-indent-1">
-            <html:span data-preserver-spaces="true">The (for now) last ranking only considers artifacts
-              updated in the previous month. Calculation-wise, it applies the same principles as the “Overall
-              Trends”.</html:span>
+            <html:span data-preserver-spaces="true">The (for now) last ranking only considers artifacts updated in the previous month. Some of the tags (stars, forks, last updated) will be freshed on a daily basis which might impact the ranking here. Therefore, <html:a class="editor-rtfLink"
+            href="https://github.com/SAP-samples/artifact-of-the-month/issues/9"
+            target="_blank" rel="noopener">
+            <html:span data-preserver-spaces="true">we won’t display a rank here any longer </html:span>
+          </html:a>.</html:span>
           </html:li>
         </html:ul>
       </html:li>
     </html:ul>
     <html:p> </html:p>
-    <html:p>And the last page lists all items that were considered for the current ranking. These list items look
-      slightly
-      different than the previous ones as they don’t have a rank indicator. The list itself continues a few hundred
-      items, so it doesn’t make sense to filter them based on their type. Instead, there’s a search box to filter list
-      items based on their name, description, or type:</html:p>
+    <html:p>And the last page lists all items that were considered for the current month. These list items look slightly different than the previous ones as they don’t have a rank indicator. The list includes a few hundred items, so it doesn’t make sense just to filter them based on their type. This is why there is an additional search box to filter list items based on their name, description, or type.</html:p>
     <html:h1>Improvements are very much appreciated</html:h1>
     <html:p>
       <html:span data-preserver-spaces="true">In the current version, the catalog contains more than 1500 artifacts. I’m
