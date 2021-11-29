@@ -117,7 +117,7 @@
                 },
                 {
                     "name": "all",
-                    "pattern": "all",
+                    "pattern": "all:?query:",
                     "target": "AllPage"
                 },
                 {
