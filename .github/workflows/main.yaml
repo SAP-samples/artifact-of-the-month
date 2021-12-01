@@ -29,6 +29,8 @@ jobs:
             - run: yarn install
 
             - run: yarn run all # "fetch", "analyze", and "build"
+              with:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
