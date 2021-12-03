@@ -39,6 +39,8 @@ GOOGLE_CLOUD_PROJECT=<project id>
 GOOGLE_APPLICATION_CREDENTIALS=<path to the key file>
 ```
 
+> Be aware that the usage of the BigQuery API is not for free and will results in some costs in your GCP account. If you just want to test locally and don't neet the PyPI data, remove the [PyPI export line](analyzer/src/providers/index.ts#L7)
+
 And make sure that the service key is stored in the referenced file. Now, you can run the following commands to fetch the latest data, calculate the ranking, and start the development server locally:
 
 ```
